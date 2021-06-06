@@ -538,6 +538,9 @@ input {
 }
 
 @media only screen and (max-width: 700px) {
+    .heromain {
+        height: 95vh;
+    }
     .hi {
         font-size: 36px;
     }
