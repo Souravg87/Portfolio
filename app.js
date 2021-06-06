@@ -40,7 +40,9 @@ function check() {
             afterText();
         }
     } else {
-        removeerror();
+        if ($(".error").length !== 0) {
+            removeerror();
+        }
         SubForm();
         showThankyou.classList.add("show");
         formBox.classList.add('hidden');
