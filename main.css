@@ -449,7 +449,8 @@ footer {
     font-weight: 500;
 }
 
-.contact-ins {
+.contact-ins,
+.thankyouText {
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -495,6 +496,14 @@ input {
     content: url("assets/error.svg");
     margin-right: 10px;
     margin-bottom: -2px;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 @keyframes bubble2 {
