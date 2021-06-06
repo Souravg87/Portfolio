@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Webx Dev</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- <script>
+        let errorCount = 0;
+
+        function check() {
+            let allAreFilled = true;
+            document.getElementById("myForm").querySelectorAll("[required]").forEach(function(i) {
+                if (!allAreFilled) return;
+                if (!i.value) allAreFilled = false;
+                if (i.type === "radio") {
+                    let radioValueCheck = false;
+                    document.getElementById("myForm").querySelectorAll(`[name=${i.name}]`).forEach(function(r) {
+                        if (r.checked) radioValueCheck = true;
+                    })
+                    allAreFilled = radioValueCheck;
+                }
+            })
+            if (!allAreFilled) {
+                if (errorCount === 0) {
+                    afterText();
+                }
+                // alert('Fill all the fields');
+            } else {
+                errorCount = 0
+                SubForm()
+            };
+        };
+
+        function afterText() {
+
+            errorCount = 1
+            var error = '<div class="error" id="error">Please fill all the details</div>'; // Create element with HTML
+            $(".contact-ins").has("error").length ? null : $(".contact-ins").after(error);
+            // Insert new elements after <img>
+        }
+    </script> -->
+
+
+    <script>
+        var checkFilledEmpty = false;
+
+        function check() {
+            document.getElementById("myForm").querySelectorAll("[required]").forEach(
+                (field) => {
+                    if (field.value.length === 0) {
+                        checkFilledEmpty = true;
+                    } else {
+                        checkFilledEmpty = false;
+                    }
+                })
+
+            if (checkFilledEmpty) {
+                if ($(".error").length === 0) {
+                    afterText();
+                }
+            } else {
+                if ($(".error").length !== 0) {
+                    removeerror();
+                }
+                SubForm();
+            }
+        };
+
+        function afterText() {
+            var error = '<div class="error" id="error">Please fill all the details</div>'; // Create element with HTML
+            $(".contact-ins").has("error").length ? null : $(".contact-ins").after(error);
+        }
+
+        function removeerror() {
+            var myobj = document.getElementById("error");
+            myobj.remove();
+        }
+
+        function SubForm() {
+            $.ajax({
+                url: "https://api.apispreadsheets.com/data/13469/",
+                type: "post",
+                data: $("#myForm").serializeArray(),
+                success: function() {
+                    alert("Form Data Submitted :)");
+                    document.getElementById("myForm").reset();
+                },
+                error: function() {
+                    alert("There was an error :(")
+                }
+            });
+        }
+    </script>
+
+</head>
+
+
+<body>
+
+
+    <div class="heromain">
+        <nav class="menu flx">
+            <div class="logo"><img src="assets/logo.svg" alt=""></div>
+            <ul class="flx menu-links">
+                <li><a href="#">Home</a></li>
+                <!-- <li><a href="#">About</a></li> -->
+                <li><a href="#" onclick="opencontact()">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="herotext">
+            <p class="hi">Hi there. I’m <span class="hero-name">Sourav Goyal</span>, a UX/UI Designer.</p>
+            <p class="hi-2">I design thoughtful digital experiences that are beautiful and enjoyable.</p>
+            <div class="herobutton hover" onclick="opencontact()">Let's Talk</div>
+        </div>
+        <img src="assets/Stars.svg" alt=" " class="stars">
+        <img src="assets/scene.svg" alt="" class="scene">
+    </div>
+    <div class="sections flx">
+        <h2>What I Do</h2>
+        <div class="header-line"> </div>
+        <div class="features flx">
+            <div class="feature flx">
+                <div class="feature-icon f-i1">
+                    <div class="crcl"></div>
+                    <div class="outr-crcl"></div>
+                </div>
+                <h4>UX Research</h4>
+                <div class="feature-description">Empathize, Define, Ideate, User Flow, Site Map</div>
+            </div>
+            <div class="feature flx ">
+                <div class="feature-icon f-i2">
+                    <div class="crcl crcl1"></div>
+                    <div class="outr-crcl outr-crcl1"></div>
+                </div>
+                <h4>Interaction Design</h4>
+                <div class="feature-description">Lo-Fi Wireframes, Prototype, Mid-Fi Wireframes</div>
+            </div>
+            <div class="feature flx">
+                <div class="feature-icon f-i3">
+                    <div class="crcl crcl2"></div>
+                    <div class="outr-crcl outr-crcl2"></div>
+                </div>
+                <h4>UI Design</h4>
+                <div class="feature-description">Landing Pages, Mobile App Design, Web App Design</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sections flx">
+        <h2>My Latest Works</h2>
+        <div class="header-line"> </div>
+
+        <div class="works">
+            <div class="work flx">
+                <div class="text-part">
+                    <h3>Redesigning Spacex Landing Page</h3>
+                    <a href="https://www.behance.net/gallery/119161559/Spacex-Landing-Page-UI" target="_blank">
+                        <div class="herobutton work-button">View Project</div>
+                    </a>
+
+                </div>
+                <div class="img-part">
+                    <img src="assets/blob1.svg" class="blob">
+                    <img src="assets/spacex.png" class="work-image">
+
+                </div>
+            </div>
+            <div class="work flx flx-rev">
+                <div class="text-part ml-70">
+                    <h3>Inventory Management App | Dashboard</h3>
+                    <a href="https://www.behance.net/gallery/113044275/Inventory-Management-App-UXUI-Design" target="_blank">
+                        <div class="herobutton work-button">View Project</div>
+                    </a>
+                </div>
+                <div class="img-part">
+                    <img src="assets/blob1.svg" class="blob">
+                    <img src="assets/inventoryapp.png" class="work-image">
+
+                </div>
+            </div>
+            <div class="work flx">
+                <div class="text-part">
+                    <h3>Bike Shop Premium Look UI Design</h3>
+                    <a href="https://www.behance.net/gallery/112866553/Website-for-the-bike-shop-UIUX-design" target="_blank">
+                        <div class="herobutton work-button">View Project</div>
+                    </a>
+                </div>
+                <div class="img-part">
+                    <img src="assets/blob1.svg" class="blob">
+                    <img src="assets/bikeshop.png" class="work-image">
+
+                </div>
+            </div>
+            <div class="work flx flx-rev">
+                <div class="text-part ml-70">
+                    <h3>Transaction App | Dashboard</h3>
+                    <a href="https://www.behance.net/gallery/112993579/Website-for-a-Transaction-App-UXUI-Design" target="_blank">
+                        <div class="herobutton work-button">View Project</div>
+                    </a>
+                </div>
+                <div class="img-part">
+                    <img src="assets/blob1.svg" class="blob">
+                    <img src="assets/transactionapp.png" class="work-image">
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <footer class="flx">
+        <p class="hi footer-text">Interested to work with me?</p>
+        <div class="herobutton hover" onclick="opencontact()">Let's Talk</div>
+        <div class=" social-medias flx ">
+            <a href="https://www.instagram.com/desgn_monk/ " target="_blank " title="instagram ">
+                <div class="media insta "></div>
+            </a>
+            <a href="https://www.behance.net/souravgoyal " target="_blank " title="behance ">
+                <div class="media behance "></div>
+            </a>
+            <a href="https://www.linkedin.com/in/sourav-goyal-324b21164 " target="_blank " title="linkedin ">
+                <div class="media linkdin "></div>
+            </a>
+        </div>
+    </footer>
+
+    <div class="overlay ">
+        <div class="contact-us ">
+            <img src="assets/cross.svg " alt=" " class="cross-icon " onclick="hidecontact()">
+            <div class="contact-form" id="form-box">
+
+                <h2>Let's Talk</h2>
+                <p class="contact-ins">I will get back to you within one to two days through email. Also Please don’t forget to check your spam account just in case</p>
+
+                <form action="" id="myForm">
+                    <input name="full_name" type="text " placeholder="Full Name* " required="required">
+                    <input name="email" type="text " placeholder="Email* " required="required">
+                    <input name="subject" type="text " placeholder="Subject* " required="required">
+                    <input name="message" type="text " placeholder="Message* " required="required">
+                </form>
+                <div class="herobutton work-button contact-button" onclick="check()">Send Request</div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+    <script src=" app.js "></script>
+</body>
+
+</html>
