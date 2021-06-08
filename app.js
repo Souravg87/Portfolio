@@ -44,8 +44,7 @@ function check() {
             removeerror();
         }
         SubForm();
-        showThankyou.classList.add("show");
-        formBox.classList.add('hidden');
+
     }
 };
 
@@ -65,7 +64,8 @@ function SubForm() {
         type: "post",
         data: $("#myForm").serializeArray(),
         success: function() {
-            alert("Form Data Submitted :)");
+            showThankyou.classList.add("show");
+            formBox.classList.add('hidden');
             document.getElementById("myForm").reset();
         },
         error: function() {
